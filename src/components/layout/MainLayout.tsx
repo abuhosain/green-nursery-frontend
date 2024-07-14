@@ -20,7 +20,7 @@ const MainLayout: React.FC = () => {
   const breadcrumbs = useBreadcrumbs(userPaths);
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: "100vh", }}>
       <Header
         style={{
           position: "sticky",
@@ -44,17 +44,17 @@ const MainLayout: React.FC = () => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content style={{ padding: "0 48px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
+      <Content style={{ padding: "0" }}>
+        <Breadcrumb style={{ margin: "10px 24px" }}>
           {breadcrumbs.map((breadcrumb, index) => (
             <Breadcrumb.Item key={index}>
-              <Link to={breadcrumb.path}>{breadcrumb.name}</Link>
+              <Link to={breadcrumb.path} style={{fontStyle : "italic", fontWeight : "bold"}}>{breadcrumb.name}</Link>
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>
         <div
           style={{
-            padding: 24,
+            padding: 0,
             minHeight: 380,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
