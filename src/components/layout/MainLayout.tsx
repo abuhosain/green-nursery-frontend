@@ -1,5 +1,4 @@
-// components/MainLayout.tsx
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
@@ -7,7 +6,6 @@ import { headerItemsGenerator } from "../../utils/headerItemsGenerator";
 import { userPaths } from "../../routes/user.route";
 import { useBreadcrumbs } from "../../utils/breadCumbGenerator";
 import AppFooter from "../ui/shared/footer/Footer";
-
 
 const { Header, Content } = Layout;
 
@@ -21,7 +19,7 @@ const MainLayout: React.FC = () => {
   const breadcrumbs = useBreadcrumbs(userPaths);
 
   return (
-    <Layout style={{ height: "100vh", }}>
+    <Layout style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Header
         style={{
           position: "sticky",
@@ -45,11 +43,16 @@ const MainLayout: React.FC = () => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content style={{ padding: "0" }}>
+      <Layout.Content style={{ flex: 1, padding: "0" }}>
         <Breadcrumb style={{ margin: "10px 24px" }}>
           {breadcrumbs.map((breadcrumb, index) => (
             <Breadcrumb.Item key={index}>
-              <Link to={breadcrumb.path} style={{fontStyle : "italic", fontWeight : "bold"}}>{breadcrumb.name}</Link>
+              <Link
+                to={breadcrumb.path}
+                style={{ fontStyle: "italic", fontWeight: "bold" }}
+              >
+                {breadcrumb.name}
+              </Link>
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>
@@ -63,10 +66,8 @@ const MainLayout: React.FC = () => {
         >
           <Outlet />
         </div>
-      </Content>
- 
-        <AppFooter />
-     
+      </Layout.Content>
+      <AppFooter />
     </Layout>
   );
 };
