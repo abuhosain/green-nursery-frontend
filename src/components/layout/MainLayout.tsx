@@ -6,9 +6,10 @@ import { Link, Outlet } from "react-router-dom";
 import { headerItemsGenerator } from "../../utils/headerItemsGenerator";
 import { userPaths } from "../../routes/user.route";
 import { useBreadcrumbs } from "../../utils/breadCumbGenerator";
+import AppFooter from "../ui/shared/footer/Footer";
 
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const sidebarItems = headerItemsGenerator(userPaths);
 
@@ -63,9 +64,9 @@ const MainLayout: React.FC = () => {
           <Outlet />
         </div>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
+ 
+        <AppFooter />
+     
     </Layout>
   );
 };

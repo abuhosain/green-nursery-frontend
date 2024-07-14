@@ -10,7 +10,7 @@ export const userPaths = [
   },
   {
     name: "Product",
-    path: "/prodcut",
+    path: "/product",
     element : <Product />
   },
   {
