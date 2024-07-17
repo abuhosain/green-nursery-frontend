@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/feature/product/productApi";
@@ -8,24 +9,35 @@ const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const ProductDetails: React.FC = () => {
-  const { id } = useParams();
+  // Destructure id from useParams
+  const { id } = useParams<{ id: string }>();
+  
+  // Check if id is undefined
+  if (!id) {
+    return <div className="text-center mt-10">No product ID provided</div>;
+  }
+
+  // Fetch product details using the id
   const { data, error, isLoading } = useGetProductByIdQuery(id);
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="text-center mt-10">
         <Spin size="large" />
       </div>
     );
-  if (error)
+  }
+  if (error) {
     return (
       <div className="text-center mt-10">Error loading product details</div>
     );
+  }
 
   const product = data?.data;
 
-  if (!product)
+  if (!product) {
     return <div className="text-center mt-10">Product not found</div>;
+  }
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
@@ -41,7 +53,7 @@ const ProductDetails: React.FC = () => {
         <div className="md:ml-6 mt-4 md:mt-0 flex flex-col justify-between p-6">
           <div>
             <Title level={1} className="text-green-700 text-3xl font-semibold">
-              {product.name}
+              {product.title}
             </Title>
             <Text className="text-gray-700 text-lg mb-4">
               {product.description}

@@ -59,7 +59,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
         <Form.Item
           name="description"
           label="Description"
-          rules={[{ required: true, message: 'Please enter the category descriptions' }]}
+          rules={[{ required: true, message: 'Please enter the category description' }]}
         >
           <Input />
         </Form.Item>

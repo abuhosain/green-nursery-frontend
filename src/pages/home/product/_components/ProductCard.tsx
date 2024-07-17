@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductProps> = ({ item }) => {
           />
         }
       >
-       <Link to={`/product/${item._id}`}> <Card.Meta title={item.title} description={`$${item.price}`} /></Link>
+       <Link to={`/products/${item._id}`}> <Card.Meta title={item.title} description={`$${item.price}`} /></Link>
         <div className="mt-4">
           <Rate disabled defaultValue={item.rating} />
         </div>

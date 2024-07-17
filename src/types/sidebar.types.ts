@@ -7,7 +7,7 @@ export type TMenubar = {
 }
 
 export type TUsersPath = {
-    name: string,
+    name?: string,
     path?: string,
     element?: ReactNode,
     children? : TUsersPath[];

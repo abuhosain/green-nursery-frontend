@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
-import { AppstoreOutlined, TagsOutlined } from '@ant-design/icons';
+import { HomeOutlined, AppstoreOutlined, TagsOutlined } from '@ant-design/icons';
 
 const { Sider, Content } = Layout;
 
@@ -14,6 +14,11 @@ const siderStyle: React.CSSProperties = {
 };
 
 const sidebarItems = [
+  {
+    key: "/",
+    label: "Home",
+    icon: <HomeOutlined />,
+  },
   {
     key: "/dashboard", // Matches default route for Dashboard
     label: "Products",
