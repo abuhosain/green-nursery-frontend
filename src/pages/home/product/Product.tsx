@@ -46,7 +46,8 @@ const ProductsPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto pt-3">
+      <h2 className="text-2xl font-bold text-center mb-4">Top Products</h2>
       <ProductSearch onSearch={handleSearch} />
       {isLoading && <div className="text-center mt-10">
         <Spin size="large" />
@@ -55,7 +56,7 @@ const ProductsPage: React.FC = () => {
       {data && (
         <>
           <ProductList
-            products={data.data}  // Adjusted to use `data.data` based on API response
+              // Adjusted to use `data.data` based on API response
             searchQuery={searchQuery}
             filters={filters}
             currentPage={currentPage}
