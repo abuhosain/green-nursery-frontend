@@ -7,9 +7,9 @@ import { userPaths } from "../../routes/user.route";
 import { useBreadcrumbs } from "../../utils/breadCumbGenerator";
 import AppFooter from "../ui/shared/footer/Footer";
 
-const { Header, Content } = Layout;
+const { Header } = Layout;
 
-const sidebarItems = headerItemsGenerator(userPaths);
+ const sidebarItems = headerItemsGenerator(userPaths);
 
 const MainLayout: React.FC = () => {
   const {

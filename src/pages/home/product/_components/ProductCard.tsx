@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button, Rate } from "antd";
 import { IProduct } from "../../../../types";
+import { Link } from "react-router-dom";
 
 interface ProductProps {
   item: IProduct;
@@ -20,7 +21,7 @@ const ProductCard: React.FC<ProductProps> = ({ item }) => {
           />
         }
       >
-        <Card.Meta title={item.title} description={`$${item.price}`} />
+       <Link to={`/product/${item._id}`}> <Card.Meta title={item.title} description={`$${item.price}`} /></Link>
         <div className="mt-4">
           <Rate disabled defaultValue={item.rating} />
         </div>

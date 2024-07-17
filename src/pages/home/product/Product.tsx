@@ -5,6 +5,7 @@ import ProductSearch from "./_components/ProductSearch";
 import ProductFilters from "./_components/ProductFilter";
 import ProductList from "./_components/ProductList";
 import PaginationControls from "./_components/PaginationControll";
+import { Spin } from "antd";
 
 const ProductsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -47,7 +48,9 @@ const ProductsPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <ProductSearch onSearch={handleSearch} />
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <div className="text-center mt-10">
+        <Spin size="large" />
+      </div>}
       {error && <div>Error loading products</div>}
       {data && (
         <>

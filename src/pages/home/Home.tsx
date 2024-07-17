@@ -1,4 +1,5 @@
  
+import Category from "./category/Category"
 import Gallery from "./gallery/Gallery"
 import Hero from "./hero/Hero"
 import Product from "./product/Product"
@@ -10,6 +11,7 @@ const Home = () => {
     <div>
         <Hero />
         <Product />
+        <Category />
         <Gallery />
     </div>
   )
