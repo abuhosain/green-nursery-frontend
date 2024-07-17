@@ -10,23 +10,26 @@ import { Spin } from "antd";
 const ProductsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filters, setFilters] = useState<any>({
-    priceRange: [0, 1000]
+    priceRange: [0, 1000],
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
-  const { data, error, isLoading } = useGetAllProductsQuery({
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useGetAllProductsQuery({
     searchTerm: searchQuery,
-    // category: filters.category,
-    // minPrice: filters.priceRange[0],
-    // maxPrice: filters.priceRange[1],
-    // rating: filters.rating,
+    category: filters.category?._id,
+    minPrice: filters.priceRange[0],
+    maxPrice: filters.priceRange[1],
+    rating: filters.rating,
     page: currentPage,
     limit: itemsPerPage,
   });
 
   const handleSearch = (query: string) => {
-    console.log("query:",query)
     setSearchQuery(query);
     setCurrentPage(1);
   };
@@ -49,14 +52,20 @@ const ProductsPage: React.FC = () => {
     <div className="max-w-7xl mx-auto pt-3">
       <h2 className="text-2xl font-bold text-center mb-4">Top Products</h2>
       <ProductSearch onSearch={handleSearch} />
-      {isLoading && <div className="text-center mt-10">
-        <Spin size="large" />
-      </div>}
+      {isLoading && (
+        <div className="text-center mt-10">
+          <Spin size="large" />
+        </div>
+      )}
       {error && <div>Error loading products</div>}
-      {data && (
+      {products && (
         <>
+          <ProductFilters
+            filters={filters}
+            onFilterChange={handleFilterChange}
+          />
           <ProductList
-              // Adjusted to use `data.data` based on API response
+            products={products.data} // Ensure to use `data.data` based on your API response
             searchQuery={searchQuery}
             filters={filters}
             currentPage={currentPage}
@@ -64,7 +73,7 @@ const ProductsPage: React.FC = () => {
           />
           <PaginationControls
             currentPage={currentPage}
-            totalItems={data.totalItems || 0}  // Ensure this is correctly set or handled
+            totalItems={products.totalItems || 0} // Ensure this is correctly set or handled
             itemsPerPage={itemsPerPage}
             onChangePage={handleChangePage}
             onChangePageSize={handleChangePageSize}

@@ -1,44 +1,60 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { Select, Slider } from "antd";
+import { Slider, InputNumber } from "antd";
 
 interface ProductFiltersProps {
-  categories: string[];
   filters: {
-    category?: string;
     priceRange: [number, number];
     rating?: number;
   };
   onFilterChange: (filters: any) => void;
 }
 
-const ProductFilters: React.FC<ProductFiltersProps> = ({ categories, filters, onFilterChange }) => {
-  const handleFilterChange = (newFilters: any) => {
-    onFilterChange(newFilters);
+const ProductFilters: React.FC<ProductFiltersProps> = ({
+  filters,
+  onFilterChange,
+}) => {
+  const handlePriceRangeChange = (value: [number, number]) => {
+    onFilterChange({ ...filters, priceRange: value });
   };
 
   return (
-    <div>
-      <Select
-        placeholder="Select category"
-        style={{ width: '100%', marginBottom: 16 }}
-        value={filters.category}
-        onChange={(value) => handleFilterChange({ ...filters, category: value })}
-      >
-        {categories.map(category => (
-          <Select.Option key={category} value={category}>
-            {category}
-          </Select.Option>
-        ))}
-      </Select>
-      <Slider
-        range
-        value={filters.priceRange}
-        max={1000}
-        onAfterChange={(value) => handleFilterChange({ ...filters, priceRange: value })}
-        style={{ marginBottom: 16 }}
-      />
-       
+    <div className="p-4 bg-white shadow-md rounded-md">
+      <div className="mb-4">
+        <span className="block mb-2">Price Range</span>
+        <Slider
+          range
+          value={filters.priceRange}
+          max={10000}
+          step={10}
+          onChange={handlePriceRangeChange}
+          marks={{
+            0: "$0",
+            10000: "$10000",
+          }}
+          style={{ marginBottom: 16 }}
+        />
+        <div className="flex justify-between pt-6">
+          <InputNumber
+            min={0}
+            max={10000}
+            value={filters.priceRange[0]}
+            onChange={(value) =>
+              handlePriceRangeChange([value || 0, filters.priceRange[1]])
+            }
+          />
+          <span>-</span>
+          <InputNumber
+            min={0}
+            max={10000}
+            value={filters.priceRange[1]}
+            onChange={(value) =>
+              handlePriceRangeChange([filters.priceRange[0], value || 10000])
+            }
+          />
+        </div>
+      </div>
+      
     </div>
   );
 };
