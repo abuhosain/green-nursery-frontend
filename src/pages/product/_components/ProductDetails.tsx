@@ -1,23 +1,23 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/feature/product/productApi";
 import { Card, Button, Rate, Typography, Collapse, Spin } from "antd";
 import image from "../../../assets/images/hero/hero2.webp";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/feature/cart/cartSlice";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const ProductDetails: React.FC = () => {
-  // Destructure id from useParams
   const { id } = useParams<{ id: string }>();
-  
-  // Check if id is undefined
+  const dispatch = useDispatch();
+  const [addedToCart, setAddedToCart] = useState(false);
+
   if (!id) {
     return <div className="text-center mt-10">No product ID provided</div>;
   }
 
-  // Fetch product details using the id
   const { data, error, isLoading } = useGetProductByIdQuery(id);
 
   if (isLoading) {
@@ -38,6 +38,18 @@ const ProductDetails: React.FC = () => {
   if (!product) {
     return <div className="text-center mt-10">Product not found</div>;
   }
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        productId: product._id,
+        name: product.title,
+        price: product.price,
+        quantity: 1,
+      })
+    );
+    setAddedToCart(true);
+  };
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
@@ -82,8 +94,10 @@ const ProductDetails: React.FC = () => {
           <Button
             type="primary"
             className="bg-green-600 border-none self-start"
+            onClick={handleAddToCart}
+            disabled={addedToCart}
           >
-            Add to Cart
+            {addedToCart ? "Added" : "Add to Cart"}
           </Button>
         </div>
       </Card>
