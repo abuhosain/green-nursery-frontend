@@ -24,3 +24,29 @@ export interface Category {
     isDeleted: boolean;
   }
   
+  export interface CartItem {
+    productId: string;
+    name: string;
+    price: number;
+    quantity: number;
+  }
+
+  export interface Order {
+    _id: string;
+    userId?: string;  
+    productId: string;  
+    quantity: number;
+  }
+  export interface CreateOrderPayload {
+    userId?: string;  
+    productId: string; // Required for creating an order
+    quantity: number; // Required for creating an order
+  }
+  
+  export interface UpdateOrderPayload {
+    quantity?: number; // Optional
+    totalPrice?: number; // Optional
+    isCanceled?: boolean; // Optional
+  }
+  
+  
