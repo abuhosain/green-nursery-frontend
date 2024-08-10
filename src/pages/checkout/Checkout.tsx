@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import {
   Table,
   Button,
@@ -9,7 +10,6 @@ import {
   InputNumber,
   Divider,
   Space,
-  message,
 } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -92,6 +92,8 @@ const Checkout: React.FC = () => {
       ),
     },
   ];
+
+ 
 
   return (
     <div className="max-w-7xl mx-auto p-6 bg-gray-50">

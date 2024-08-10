@@ -50,7 +50,7 @@ const MainProduct: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto pt-3">
+    <div className="max-w-7xl mx-auto pt-3 pb-6">
       <h2 className="text-2xl font-bold text-center mb-4">A list of full Products</h2>
       <ProductSearch onSearch={handleSearch} />
       {isLoading && (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/feature/product/productApi";

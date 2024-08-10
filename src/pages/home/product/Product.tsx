@@ -65,7 +65,7 @@ const ProductsPage: React.FC = () => {
             onFilterChange={handleFilterChange}
           />
           <ProductList
-            products={products.data} // Ensure to use `data.data` based on your API response
+           
             searchQuery={searchQuery}
             filters={filters}
             currentPage={currentPage}

@@ -35,7 +35,7 @@ const ProductCard: React.FC<ProductProps> = ({ item }) => {
           <img
             alt={item.title}
             src={
-              "https://media.istockphoto.com/id/1459952195/photo/beautiful-spring-garden-with-flowers-and-lawn-grass-3d-illustration.jpg?s=612x612&w=0&k=20&c=D0YvqhTZ6nUUQRU9ZUh7v7fV9sTVHmR1d8VbXhuP2eA="
+              item?.image
             }
             className="h-48 w-full object-cover" // Responsive image
           />
