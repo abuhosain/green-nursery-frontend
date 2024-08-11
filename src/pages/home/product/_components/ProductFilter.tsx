@@ -14,7 +14,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   filters,
   onFilterChange,
 }) => {
-  const handlePriceRangeChange = (value: [number, number]) => {
+  const handlePriceRangeChange =  (value: number[]) => {
     onFilterChange({ ...filters, priceRange: value });
   };
 

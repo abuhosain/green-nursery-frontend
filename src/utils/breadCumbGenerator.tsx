@@ -18,7 +18,7 @@ export const useBreadcrumbs = (routes: RouteObject[]): Breadcrumb[] => {
     const route = match.route as TUsersPath;
     return {
       path: match.pathname,
-      name: route.name,
+      name: route.name || "Green Nursery",
     };
   });
 };

@@ -4,7 +4,12 @@ import { PlusOutlined } from "@ant-design/icons";
 import CategoryTable from "./CategoryTable";
 
 import { Category } from "../../../types";
-import { useGetAllCategoryQuery, useDeleteCategoryMutation, useCreateCategoryMutation, useUpdateCategoryMutation } from "../../../redux/feature/category/categoryApi";
+import {
+  useGetAllCategoryQuery,
+  useDeleteCategoryMutation,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
+} from "../../../redux/feature/category/categoryApi";
 import Swal from "sweetalert2";
 import CategoryFormModal from "./CategoryFormModal";
 
@@ -46,27 +51,35 @@ const CategoryListTable: React.FC = () => {
       refetch(); // Re-fetch the category data
       setVisible(false);
     } catch (error) {
-      Swal.fire("Error!", "There was an error processing your request.", "error");
+      Swal.fire(
+        "Error!",
+        "There was an error processing your request.",
+        "error"
+      );
     }
   };
 
   const handleDelete = (id: string): void => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           await deleteCategory(id).unwrap();
-          Swal.fire('Deleted!', 'Your category has been deleted.', 'success');
+          Swal.fire("Deleted!", "Your category has been deleted.", "success");
           refetch(); // Re-fetch the category data
         } catch (error) {
-          Swal.fire('Error!', 'There was an error deleting the category.', 'error');
+          Swal.fire(
+            "Error!",
+            "There was an error deleting the category.",
+            "error"
+          );
         }
       }
     });
@@ -74,26 +87,26 @@ const CategoryListTable: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-extrabold text-center mb-6 text-gray-800">
+      <h1 className="text-2xl sm:text-4xl font-extrabold text-center mb-6 text-gray-800">
         <span className="block text-blue-600">Our Exclusive</span>
         <span className="block text-gray-900">Category List</span>
         <span className="block mt-2 text-sm text-gray-600">
           Discover the best products available
         </span>
       </h1>
-      <Button
-        type="primary"
-        icon={<PlusOutlined />}
-        onClick={handleAdd}
-        className="mb-4"
-      >
-        Add Category
-      </Button>
-      <CategoryTable
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        data={categoryData}
-      />
+      <div className="flex justify-center mb-4">
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={handleAdd}
+          className="mb-4 sm:mb-0 sm:mr-4"
+        >
+          Add Category
+        </Button>
+      </div>
+      <div className="overflow-x-auto">
+        <CategoryTable onEdit={handleEdit} onDelete={handleDelete} data={categoryData} />
+      </div>
       <CategoryFormModal
         open={visible}
         isAdding={isAdding}

@@ -17,7 +17,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({ currentPage, to
       pageSize={itemsPerPage}
       showSizeChanger
       onChange={onChangePage}
-      onShowSizeChange={(current, size) => onChangePageSize(size)}
+      onShowSizeChange={(size) => onChangePageSize(size)}
       style={{ marginTop: 16 }}
     />
   );

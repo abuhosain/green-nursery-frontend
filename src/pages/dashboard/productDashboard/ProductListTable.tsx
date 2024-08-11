@@ -114,19 +114,25 @@ const ProductListTable: React.FC = () => {
         </span>
       </h1>
 
-      <Button
-        type="primary"
-        icon={<PlusOutlined />}
-        onClick={handleAdd}
-        className="mb-4"
-      >
-        Add Product
-      </Button>
-      <ProductTable
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        data={products}
-      />
+      <div className="flex justify-center mb-4">
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={handleAdd}
+          className="mb-4 sm:mb-0 sm:mr-4"
+        >
+          Add Product
+        </Button>
+      </div>
+
+      <div className="overflow-x-auto">
+        <ProductTable
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          data={products}
+        />
+      </div>
+
       <ProductFormModal
         open={visible}
         isAdding={isAdding}
