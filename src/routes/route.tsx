@@ -7,6 +7,7 @@ import Checkout from "../pages/checkout/Checkout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import ProductListTable from "../pages/dashboard/productDashboard/ProductListTable";
 import CategoryListTable from "../pages/dashboard/categoryDashboard/CategoryListTable";
+import NotFound from "../components/ui/shared/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path : "*",
+    element : <NotFound />
+  }
 ]);
 
 export default router;
